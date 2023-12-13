@@ -6,6 +6,7 @@ import com.emredennis.account.common.events.AccountOpenedEvent;
 import com.emredennis.account.common.events.FundsDepositedEvent;
 import com.emredennis.account.common.events.FundsWithdrawnEvent;
 import com.emredennis.cqrs.core.domain.AggregateRoot;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
@@ -13,6 +14,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class AccountAggregate extends AggregateRoot {
     private Boolean active;
+    @Getter
     private double balance;
 
     public AccountAggregate(OpenAccountCommand command) {
