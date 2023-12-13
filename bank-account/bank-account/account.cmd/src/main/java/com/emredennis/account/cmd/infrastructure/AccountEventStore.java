@@ -7,6 +7,7 @@ import com.emredennis.cqrs.core.events.EventModel;
 import com.emredennis.cqrs.core.exceptions.AggregateNotFoundException;
 import com.emredennis.cqrs.core.exceptions.ConcurrencyException;
 import com.emredennis.cqrs.core.infrastructure.EventStore;
+import com.emredennis.cqrs.core.producers.EventProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,11 @@ import java.util.stream.Collectors;
 @Service
 public class AccountEventStore implements EventStore {
     @Autowired
+    private EventProducer eventProducer;
+
+    @Autowired
     private EventStoreRepository eventStoreRepository;
+
     @Override
     public void saveEvents(String aggregateId, Iterable<BaseEvent> events, int expectedVersion) {
         var eventStream = eventStoreRepository.findByAggregateIdentifier(aggregateId);
@@ -38,8 +43,8 @@ public class AccountEventStore implements EventStore {
                     .build();
             var persistedEvent = eventStoreRepository.save(eventModel);
 
-            if (persistedEvent != null) {
-                // TODO: produce event to Kafka
+            if (!persistedEvent.getId().isEmpty()) {
+                eventProducer.produce(event.getClass().getSimpleName(), event);
             }
         }
     }
