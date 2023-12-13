@@ -32,10 +32,12 @@ services:
 
   mysql:
     image: mysql:5.7
+    restart: always
+    ports:
+      - '3306:3306'
     volumes:
       - mysql_data:/var/lib/mysql
     environment:
-      MYSQL_USER: root
       MYSQL_ROOT_PASSWORD: demobankrootpsw
       MYSQL_DATABASE: bankAccount
     networks:
@@ -57,7 +59,7 @@ volumes:
     driver: local
   mysql_data:
   mongo_data:
-   
+
 networks:
   emrebankNetwork:
     driver: bridge
