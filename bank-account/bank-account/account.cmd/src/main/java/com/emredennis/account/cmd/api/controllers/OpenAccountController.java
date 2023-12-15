@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.text.MessageFormat;
 import java.util.UUID;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 @RestController
 @RequestMapping(path = "/api/v1/openBankAccount")
