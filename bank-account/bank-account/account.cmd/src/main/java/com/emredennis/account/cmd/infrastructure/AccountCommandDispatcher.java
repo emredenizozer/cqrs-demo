@@ -28,5 +28,6 @@ public class AccountCommandDispatcher implements CommandDispatcher {
         if (handlers.size() > 1) {
             throw new RuntimeException("Cannot send command to more than one handler!");
         }
+        handlers.get(0).handle(command);
     }
 }
