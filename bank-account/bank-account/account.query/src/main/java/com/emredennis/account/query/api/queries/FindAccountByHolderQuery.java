@@ -6,6 +6,6 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class FindAccountByHolder extends BaseQuery {
+public class FindAccountByHolderQuery extends BaseQuery {
     private String accountHolder;
 }
