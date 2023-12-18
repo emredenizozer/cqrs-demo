@@ -5,6 +5,7 @@ import com.emredennis.cqrs.core.domain.AggregateRoot;
 import com.emredennis.cqrs.core.events.BaseEvent;
 import com.emredennis.cqrs.core.handlers.EventSourcingHandler;
 import com.emredennis.cqrs.core.infrastructure.EventStore;
+import com.emredennis.cqrs.core.producers.EventProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,10 @@ import java.util.Comparator;
 public class AccountEventSourcingHandler implements EventSourcingHandler<AccountAggregate> {
     @Autowired
     private EventStore eventStore;
+
+    @Autowired
+    private EventProducer eventProducer;
+
     @Override
     public void save(AggregateRoot aggregate) {
         eventStore.saveEvents(aggregate.getId(), aggregate.getUncommittedChanges(), aggregate.getVersion());
@@ -30,5 +35,18 @@ public class AccountEventSourcingHandler implements EventSourcingHandler<Account
             aggregate.setVersion(latestVersion.get());
         }
         return aggregate;
+    }
+
+    @Override
+    public void republishEvents() {
+        var aggregateIds = eventStore.getAggregateIds();
+        for (var aggregateId: aggregateIds) {
+            var aggregate = getById(aggregateId);
+            if (aggregate == null || !aggregate.getActive()) continue;
+            var events = eventStore.getEvents(aggregateId);
+            for (var event: events) {
+                eventProducer.produce(event.getClass().getSimpleName(), event);
+            }
+        }
     }
 }
