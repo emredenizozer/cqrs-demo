@@ -7,6 +7,7 @@ import com.emredennis.cqrs.core.handlers.EventSourcingHandler;
 import com.emredennis.cqrs.core.infrastructure.EventStore;
 import com.emredennis.cqrs.core.producers.EventProducer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
@@ -18,6 +19,9 @@ public class AccountEventSourcingHandler implements EventSourcingHandler<Account
 
     @Autowired
     private EventProducer eventProducer;
+
+    @Value("${spring.kafka.topic}")
+    private String topic;
 
     @Override
     public void save(AggregateRoot aggregate) {
@@ -45,7 +49,7 @@ public class AccountEventSourcingHandler implements EventSourcingHandler<Account
             if (aggregate == null || !aggregate.getActive()) continue;
             var events = eventStore.getEvents(aggregateId);
             for (var event: events) {
-                eventProducer.produce(event.getClass().getSimpleName(), event);
+                eventProducer.produce(topic, event);
             }
         }
     }
