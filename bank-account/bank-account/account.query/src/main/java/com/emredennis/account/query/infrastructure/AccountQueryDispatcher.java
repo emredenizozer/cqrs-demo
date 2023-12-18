@@ -17,6 +17,7 @@ public class AccountQueryDispatcher implements QueryDispatcher {
     @Override
     public <T extends BaseQuery> void registerHandler(Class<T> type, QueryHandlerMethod<T> handler) {
         var handlers = routes.computeIfAbsent(type, c -> new LinkedList<>());
+        handlers.add(handler);
     }
 
     @Override
