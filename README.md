@@ -20,8 +20,6 @@ Sample bank account project that aims to use CQRS notion to segregate
 ### Project Module Structure
 1. <b>cqrs-es</b> Module
    - <b>cqrs.core</b> -> The core project. There is no main (Application) class since it is a pure library project.
-<br />
-<br />
 2. <b>bank-account</b> Module (Parent project)
    - <b>account.cmd</b> -> Command project.
         - <b>api</b> package -> Contains commands, rest controllers and DTOs. 
@@ -32,8 +30,6 @@ Sample bank account project that aims to use CQRS notion to segregate
        - <b>api</b> package -> Contains queries, rest controllers and DTOs.
        - <b>domain</b> package -> Contains account repository and bank account domain entity.
        - <b>infrastructure</b> package -> Contains consumer implementation, event handlers and query dispatcher.
-<br />
-<br />
 3. <b>local-env</b> Module
     - It consists the docker-compose file for local setup and Postman collection for testing.
 
