@@ -42,7 +42,7 @@ Sample bank account project that aims to use CQRS notion to segregate
 ```account.cmd```
 ```account.query``` and
 ```bank-account```
-3. Then the main classes of account.cmd (CommandApplication.java) and account.query (QueryApplication.java) projects should be run using IntelliJ or VSCode.
+3. Then the main classes of ```account.cmd``` (CommandApplication.java) and ```account.query``` (QueryApplication.java) projects should be run using IntelliJ or VSCode.
 Alternatively, you can also run account.cmd and account.query projects from the terminal:
 - Go to the folder ```cqrs-demo/bank-account/account.cmd```
 - Run ```mvn spring-boot:run```
