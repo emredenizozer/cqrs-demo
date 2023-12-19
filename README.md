@@ -14,7 +14,7 @@ Sample bank account project that aims to use CQRS notion to segregate
 * Docker and docker-compose are also needed.
 
 ### Running the containers
-1. Navigate to 'local-env' folder using the terminal.
+1. Navigate to ```cqrs-demo/local-env``` folder using the terminal.
 2. Run ```docker-compose up -d``` command to have MySQL, MongoDB and Kafka containers at your local machine.
 
 ### Project Module Structure
