@@ -45,7 +45,7 @@ Sample bank account project that aims to use CQRS notion to segregate
 
 ### Test
 1. Go to the folder ```cqrs-demo/bank-account```
-2. Run ```mvn clean install``` command. It will build all the projects, namely,
+2. Run ```./mvnw clean install``` command. It will build all the projects, namely,
 ```cqrs.core```
 ```account.common```
 ```account.cmd```
@@ -53,8 +53,8 @@ Sample bank account project that aims to use CQRS notion to segregate
 ```bank-account```
 3. Then the main classes of ```account.cmd``` (CommandApplication.java) and ```account.query``` (QueryApplication.java) projects should be run using IntelliJ or VSCode.
 Alternatively, you can also run account.cmd and account.query projects from the terminal:
-   - For the Command project go to the folder ```cqrs-demo/bank-account/account.cmd``` and run ```mvn spring-boot:run```
-   - For the Query project go to the folder ```cqrs-demo/bank-account/account.query``` and run ```mvn spring-boot:run```
+   - For the Command project go to the folder ```cqrs-demo/bank-account/account.cmd``` and run ```./mvnw spring-boot:run```
+   - For the Query project go to the folder ```cqrs-demo/bank-account/account.query``` and run ```./mvnw spring-boot:run```
 
 ---
  - A sample Postman collection was shared in local-env folder  to test the commands and queries using REST APIs.
