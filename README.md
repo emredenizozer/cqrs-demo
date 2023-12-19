@@ -50,7 +50,6 @@ Alternatively, you can also run account.cmd and account.query projects from the 
   <br />
 OR
 <br />
-<br />
 -  Go to the folder ```cqrs-demo/bank-account/account.query```
 - Run ```mvn spring-boot:run```
 
