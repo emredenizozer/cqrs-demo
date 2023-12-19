@@ -13,7 +13,7 @@ current state can be created by replaying all the events in order of occurrence.
 the events. As the event has already happened, it’s always referred to in the past tense (with a past-participle verb,
 such as AccountClosedEvent).
 
-### CQRS - Event Sourcing Demo Project with Spring Boot, Kafka, MongoDB and MySQL
+### CQRS - Event Sourcing - Domain Driven Design Demo Project with Spring Boot, Kafka, MongoDB and MySQL
 Sample bank account project that aims to use CQRS notion to segregate
 * handling commands, namely, OpenAccountCommand, DepositFundsCommand, WithdrawFundsCommand, CloseAccountCommand and RestoreReadDbCommand
 * handling queries, namely, FindAllAccountsQuery, FindAccountByIdQuery, FindAccountByHolderQuery and FindAccountWithBalanceQuery
