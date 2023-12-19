@@ -5,6 +5,14 @@ Implementing CQRS in your application can maximize its performance, scalability,
 The flexibility created by migrating to CQRS allows a system to better evolve over time and prevents update commands 
 from causing merge conflicts at the domain level.
 
+### What is Event Sourcing?
+Event Sourcing defines an approach where all the changes that are made to an object or entity, are stored as a sequence
+of immutable events to an event store, as opposed to storing just the current state. So it is a pattern for storing data
+as events in an append-only log. Every change made is represented as an event, and appended to the event log. An entity’s
+current state can be created by replaying all the events in order of occurrence. The system information is sourced from
+the events. As the event has already happened, it’s always referred to in the past tense (with a past-participle verb,
+such as AccountClosedEvent).
+
 ### CQRS Demo Project with Spring Boot, Kafka, MongoDB and MySQL
 Sample bank account project that aims to use CQRS notion to segregate
 * handling commands, namely, OpenAccountCommand, DepositFundsCommand, WithdrawFundsCommand, CloseAccountCommand and RestoreReadDbCommand
