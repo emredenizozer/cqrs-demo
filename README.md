@@ -10,12 +10,33 @@ Sample bank account project that aims to use CQRS notion to segregate
 * handling queries, namely, FindAllAccountsQuery, FindAccountByIdQuery, FindAccountByHolderQuery and FindAccountWithBalanceQuery
 
 ### Preconditions
-* Java 17 should be installed at your local machine.
+* Java 17+ should be installed at your local machine (Spring Boot 3.0 requires it).
 * Docker and docker-compose are also needed.
 
 ### Running the containers
 1. Navigate to 'local-env' folder using the terminal.
 2. Run ```docker-compose up -d``` command to have MySQL, MongoDB and Kafka containers at your local machine.
+
+### Project Module Structure
+1. <b>cqrs-es</b> Module
+   - <b>cqrs.core</b> -> The core project. There is no main (Application) class since it is a pure library project.
+<br />
+<br />
+2. <b>bank-account</b> Module (Parent project)
+   - <b>account.cmd</b> -> Command project.
+        - <b>api</b> package -> Contains commands, rest controllers and DTOs. 
+        - <b>domain</b> package -> Contains account aggregate and event store repository.
+        - <b>infrastructure</b> package -> Contains infrastructure related code such as command dispatcher, event producer, event sourcing handler as well as event store implementation.
+   - <b>account.common</b> -> Account specific DTOs and event classes are stored. There is no main class since it is a pure library project.
+   - <b>account.query</b> -> Query project.
+       - <b>api</b> package -> Contains queries, rest controllers and DTOs.
+       - <b>domain</b> package -> Contains account repository and bank account domain entity.
+       - <b>infrastructure</b> package -> Contains consumer implementation, event handlers and query dispatcher.
+<br />
+<br />
+3. <b>local-env</b> Module
+    - It consists the docker-compose file for local setup and Postman collection for testing.
+
 
 ### Test
 The main classes of account.cmd and account.query projects should be run. A sample Postman collection was shared in local-env folder
